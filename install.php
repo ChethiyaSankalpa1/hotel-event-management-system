@@ -12,26 +12,33 @@ $installed = false;
 $error = null;
 $messages = [];
 
+$getEnv = function($key, $default = null) {
+    if (!empty($_SERVER[$key])) return $_SERVER[$key];
+    if (!empty($_ENV[$key])) return $_ENV[$key];
+    $val = getenv($key);
+    return ($val !== false && $val !== '') ? $val : $default;
+};
+
 // Detect cloud environment credentials (e.g. Railway MySQL)
-$cloudDbUrl = getenv('DATABASE_URL') ?: getenv('MYSQL_URL');
-$defaultHost = 'localhost';
+$cloudDbUrl = $getEnv('DATABASE_URL') ?: $getEnv('MYSQL_URL');
+$defaultHost = '127.0.0.1';
 $defaultPort = '3306';
 $defaultUser = 'root';
 $defaultPass = '';
 $defaultName = 'hotel_event_db';
 
 if ($cloudDbUrl && ($urlParts = parse_url($cloudDbUrl))) {
-    $defaultHost = $urlParts['host'] ?? 'localhost';
+    $defaultHost = $urlParts['host'] ?? '127.0.0.1';
     $defaultPort = (string)($urlParts['port'] ?? 3306);
-    $defaultUser = $urlParts['user'] ?? 'root';
-    $defaultPass = $urlParts['pass'] ?? '';
-    $defaultName = ltrim($urlParts['path'] ?? 'hotel_event_db', '/');
-} elseif (getenv('MYSQLHOST')) {
-    $defaultHost = getenv('MYSQLHOST');
-    $defaultPort = getenv('MYSQLPORT') ?: '3306';
-    $defaultUser = getenv('MYSQLUSER') ?: 'root';
-    $defaultPass = getenv('MYSQLPASSWORD') ?: '';
-    $defaultName = getenv('MYSQLDATABASE') ?: 'railway';
+    $defaultUser = isset($urlParts['user']) ? urldecode($urlParts['user']) : 'root';
+    $defaultPass = isset($urlParts['pass']) ? urldecode($urlParts['pass']) : '';
+    $defaultName = ltrim($urlParts['path'] ?? 'railway', '/');
+} elseif ($getEnv('MYSQLHOST')) {
+    $defaultHost = $getEnv('MYSQLHOST');
+    $defaultPort = (string)($getEnv('MYSQLPORT') ?: '3306');
+    $defaultUser = $getEnv('MYSQLUSER') ?: 'root';
+    $defaultPass = $getEnv('MYSQLPASSWORD') ?: '';
+    $defaultName = $getEnv('MYSQLDATABASE') ?: 'railway';
 }
 
 $dbHost = $_POST['db_host'] ?? $defaultHost;

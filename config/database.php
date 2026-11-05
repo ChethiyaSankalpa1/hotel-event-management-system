@@ -26,25 +26,32 @@ if ($isLiveHosting) {
     // -------------------------------------------------------------
     // LOCAL XAMPP / DOCKER / CLOUD ENVIRONMENT (Railway, Render, etc.)
     // -------------------------------------------------------------
-    $cloudDbUrl = getenv('DATABASE_URL') ?: getenv('MYSQL_URL');
+    $getEnv = function($key, $default = null) {
+        if (!empty($_SERVER[$key])) return $_SERVER[$key];
+        if (!empty($_ENV[$key])) return $_ENV[$key];
+        $val = getenv($key);
+        return ($val !== false && $val !== '') ? $val : $default;
+    };
+
+    $cloudDbUrl = $getEnv('DATABASE_URL') ?: $getEnv('MYSQL_URL');
     if ($cloudDbUrl && ($urlParts = parse_url($cloudDbUrl))) {
-        defined('DB_HOST') or define('DB_HOST', $urlParts['host'] ?? 'localhost');
+        defined('DB_HOST') or define('DB_HOST', $urlParts['host'] ?? '127.0.0.1');
         defined('DB_PORT') or define('DB_PORT', (string)($urlParts['port'] ?? 3306));
-        defined('DB_USER') or define('DB_USER', $urlParts['user'] ?? 'root');
-        defined('DB_PASS') or define('DB_PASS', $urlParts['pass'] ?? '');
-        defined('DB_NAME') or define('DB_NAME', ltrim($urlParts['path'] ?? 'hotel_event_db', '/'));
-    } elseif (getenv('MYSQLHOST')) {
-        defined('DB_HOST') or define('DB_HOST', getenv('MYSQLHOST'));
-        defined('DB_PORT') or define('DB_PORT', getenv('MYSQLPORT') ?: '3306');
-        defined('DB_USER') or define('DB_USER', getenv('MYSQLUSER') ?: 'root');
-        defined('DB_PASS') or define('DB_PASS', getenv('MYSQLPASSWORD') ?: '');
-        defined('DB_NAME') or define('DB_NAME', getenv('MYSQLDATABASE') ?: 'railway');
+        defined('DB_USER') or define('DB_USER', isset($urlParts['user']) ? urldecode($urlParts['user']) : 'root');
+        defined('DB_PASS') or define('DB_PASS', isset($urlParts['pass']) ? urldecode($urlParts['pass']) : '');
+        defined('DB_NAME') or define('DB_NAME', ltrim($urlParts['path'] ?? 'railway', '/'));
+    } elseif ($getEnv('MYSQLHOST')) {
+        defined('DB_HOST') or define('DB_HOST', $getEnv('MYSQLHOST'));
+        defined('DB_PORT') or define('DB_PORT', (string)($getEnv('MYSQLPORT') ?: '3306'));
+        defined('DB_USER') or define('DB_USER', $getEnv('MYSQLUSER') ?: 'root');
+        defined('DB_PASS') or define('DB_PASS', $getEnv('MYSQLPASSWORD') ?: '');
+        defined('DB_NAME') or define('DB_NAME', $getEnv('MYSQLDATABASE') ?: 'railway');
     } else {
-        defined('DB_HOST') or define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-        defined('DB_NAME') or define('DB_NAME', getenv('DB_NAME') ?: 'hotel_event_db');
-        defined('DB_USER') or define('DB_USER', getenv('DB_USER') ?: 'root');
-        defined('DB_PASS') or define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
-        defined('DB_PORT') or define('DB_PORT', getenv('DB_PORT') ?: '3306');
+        defined('DB_HOST') or define('DB_HOST', $getEnv('DB_HOST') ?: '127.0.0.1');
+        defined('DB_NAME') or define('DB_NAME', $getEnv('DB_NAME') ?: 'hotel_event_db');
+        defined('DB_USER') or define('DB_USER', $getEnv('DB_USER') ?: 'root');
+        defined('DB_PASS') or define('DB_PASS', $getEnv('DB_PASS') !== null ? $getEnv('DB_PASS') : '');
+        defined('DB_PORT') or define('DB_PORT', (string)($getEnv('DB_PORT') ?: '3306'));
     }
 }
 
