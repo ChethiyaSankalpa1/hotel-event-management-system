@@ -2,6 +2,7 @@
 /**
  * 1-Click Database Setup & Diagnostics Installer
  * Hotel Event Management System
+ * Supports Local XAMPP and Cloud Environments (Railway, Render, etc.)
  */
 
 error_reporting(E_ALL);
@@ -11,55 +12,70 @@ $installed = false;
 $error = null;
 $messages = [];
 
-$dbHost = $_POST['db_host'] ?? 'localhost';
-$dbPort = $_POST['db_port'] ?? '3306';
-$dbUser = $_POST['db_user'] ?? 'root';
-$dbPass = $_POST['db_pass'] ?? '';
-$dbName = $_POST['db_name'] ?? 'hotel_event_db';
+// Detect cloud environment credentials (e.g. Railway MySQL)
+$cloudDbUrl = getenv('DATABASE_URL') ?: getenv('MYSQL_URL');
+$defaultHost = 'localhost';
+$defaultPort = '3306';
+$defaultUser = 'root';
+$defaultPass = '';
+$defaultName = 'hotel_event_db';
+
+if ($cloudDbUrl && ($urlParts = parse_url($cloudDbUrl))) {
+    $defaultHost = $urlParts['host'] ?? 'localhost';
+    $defaultPort = (string)($urlParts['port'] ?? 3306);
+    $defaultUser = $urlParts['user'] ?? 'root';
+    $defaultPass = $urlParts['pass'] ?? '';
+    $defaultName = ltrim($urlParts['path'] ?? 'hotel_event_db', '/');
+} elseif (getenv('MYSQLHOST')) {
+    $defaultHost = getenv('MYSQLHOST');
+    $defaultPort = getenv('MYSQLPORT') ?: '3306';
+    $defaultUser = getenv('MYSQLUSER') ?: 'root';
+    $defaultPass = getenv('MYSQLPASSWORD') ?: '';
+    $defaultName = getenv('MYSQLDATABASE') ?: 'railway';
+}
+
+$dbHost = $_POST['db_host'] ?? $defaultHost;
+$dbPort = $_POST['db_port'] ?? $defaultPort;
+$dbUser = $_POST['db_user'] ?? $defaultUser;
+$dbPass = $_POST['db_pass'] ?? $defaultPass;
+$dbName = $_POST['db_name'] ?? $defaultName;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['run_install'])) {
     try {
-        // 1. Test basic MySQL connection without database
+        // 1. Test basic MySQL connection without selecting database
         $pdo = new PDO("mysql:host=$dbHost;port=$dbPort", $dbUser, $dbPass, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ]);
         $messages[] = "Successfully connected to MySQL server.";
 
-        // 2. Create database
-        $pdo->exec("CREATE DATABASE IF NOT EXISTS `$dbName` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
+        // 2. Create database if allowed, or use existing database
+        try {
+            $pdo->exec("CREATE DATABASE IF NOT EXISTS `$dbName` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
+        } catch (Exception $e) {
+            // Some cloud hosts don't permit CREATE DATABASE; continue using pre-provisioned DB
+        }
         $pdo->exec("USE `$dbName`;");
-        $messages[] = "Database `$dbName` created/selected.";
+        $messages[] = "Database `$dbName` selected.";
 
-        // 3. Read and execute schema.sql
-        $schemaFile = __DIR__ . '/database/schema.sql';
-        if (!file_exists($schemaFile)) {
-            throw new Exception("Schema file not found at $schemaFile");
+        // 3. Read and execute clean schema
+        $cleanSql = file_get_contents(__DIR__ . '/database/infinityfree_import.sql');
+        if (!$cleanSql) {
+            $cleanSql = file_get_contents(__DIR__ . '/database/schema.sql');
         }
-        $schemaSql = file_get_contents($schemaFile);
-        $pdo->exec($schemaSql);
-        $messages[] = "Database schema (tables, foreign keys, indexes) created successfully.";
+        $pdo->exec($cleanSql);
+        $messages[] = "Database schema and sample banquet records created successfully.";
 
-        // 4. Read and execute seed_data.sql
-        $seedFile = __DIR__ . '/database/seed_data.sql';
-        if (file_exists($seedFile)) {
-            $seedSql = file_get_contents($seedFile);
-            $pdo->exec($seedSql);
-            $messages[] = "Realistic sample records (halls, packages, test bookings) imported.";
-        }
-
-        // 5. Update user passwords using current server's native password_hash() for 100% login guarantee
+        // 4. Update user passwords using current server's native password_hash() for 100% login guarantee
         $passAdmin    = password_hash('admin123', PASSWORD_DEFAULT);
         $passStaff    = password_hash('staff123', PASSWORD_DEFAULT);
         $passCustomer = password_hash('customer123', PASSWORD_DEFAULT);
 
         $upStmt = $pdo->prepare("UPDATE `users` SET `password_hash` = :p WHERE `email` = :e");
-        $upStmt->execute([':p' => $passAdmin, ':e' => 'admin@grandhorizonhotel.com']);
         $upStmt->execute([':p' => $passAdmin, ':e' => 'admin@grandhorizon.com']);
         $upStmt->execute([':p' => $passStaff, ':e' => 'staff@grandhorizon.com']);
         $upStmt->execute([':p' => $passStaff, ':e' => 'coordinator@grandhorizon.com']);
         $upStmt->execute([':p' => $passCustomer, ':e' => 'customer@gmail.com']);
         $upStmt->execute([':p' => $passCustomer, ':e' => 'sarah.jenkins@outlook.com']);
-        $upStmt->execute([':p' => $passCustomer, ':e' => 'david.miller@apextech.com']);
 
         $messages[] = "All demo accounts initialized with native bcrypt hashes.";
         $installed = true;
@@ -205,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['run_install'])) {
         <?php else: ?>
 
             <p class="text-muted mb-4">
-                This installer will automatically connect to your local MySQL server (XAMPP standard configuration), create the <code>hotel_event_db</code> database, import all tables, set up foreign keys, and seed realistic hotel data.
+                This installer will automatically connect to your MySQL database (detected from your environment or local configuration), create the tables, set up foreign keys, and seed realistic hotel data.
             </p>
 
             <form method="POST">
@@ -224,12 +240,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['run_install'])) {
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">MySQL Username</label>
                         <input type="text" name="db_user" class="form-control" value="<?= htmlspecialchars($dbUser) ?>" required>
-                        <div class="form-text">Default XAMPP user is <code>root</code></div>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">MySQL Password</label>
-                        <input type="password" name="db_pass" class="form-control" value="<?= htmlspecialchars($dbPass) ?>" placeholder="(Empty by default in XAMPP)">
-                        <div class="form-text">Leave blank if using default XAMPP</div>
+                        <input type="password" name="db_pass" class="form-control" value="<?= htmlspecialchars($dbPass) ?>" placeholder="(Leave blank if none)">
                     </div>
                 </div>
 
