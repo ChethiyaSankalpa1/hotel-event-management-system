@@ -80,13 +80,18 @@ require_once __DIR__ . '/../includes/header.php';
 
     <div class="main-content">
         <header class="topbar">
-            <div>
-                <h4 class="mb-0 fw-bold text-dark">Payment Counter & Ledger</h4>
-                <small class="text-muted">Record client advance deposits, partial payments, and full settlements</small>
+            <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sidebar-toggle d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div>
+                    <h4 class="mb-0 fw-bold text-dark">Payment Counter & Ledger</h4>
+                    <small class="text-muted d-none d-sm-inline">Record client advance deposits, partial payments, and full settlements</small>
+                </div>
             </div>
             <div>
                 <a href="<?= BASE_URL ?>staff/bookings.php" class="btn btn-outline-secondary btn-sm">
-                    <i class="bi bi-inbox me-1"></i> Bookings Queue
+                    <i class="bi bi-inbox me-1"></i> <span class="d-none d-sm-inline">Bookings</span> Queue
                 </a>
             </div>
         </header>

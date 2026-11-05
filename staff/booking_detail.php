@@ -106,18 +106,23 @@ require_once __DIR__ . '/../includes/header.php';
 
     <div class="main-content">
         <header class="topbar">
-            <div>
-                <a href="<?= BASE_URL ?>staff/bookings.php" class="text-decoration-none text-muted small">
-                    <i class="bi bi-arrow-left me-1"></i> Back to Queue
-                </a>
-                <h4 class="mb-0 fw-bold text-dark">Reservation Dossier: <?= e($booking['booking_reference']) ?></h4>
+            <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sidebar-toggle d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div>
+                    <a href="<?= BASE_URL ?>staff/bookings.php" class="text-decoration-none text-muted small d-inline-flex align-items-center">
+                        <i class="bi bi-arrow-left me-1"></i> Back to Queue
+                    </a>
+                    <h4 class="mb-0 fw-bold text-dark">Reservation: <?= e($booking['booking_reference']) ?></h4>
+                </div>
             </div>
             <div class="d-flex gap-2">
                 <a href="<?= BASE_URL ?>staff/record_payment.php?booking_id=<?= $booking['id'] ?>" class="btn btn-success btn-sm">
-                    <i class="bi bi-cash-stack me-1"></i> Record Payment
+                    <i class="bi bi-cash-stack me-1"></i> <span class="d-none d-sm-inline">Record</span> Payment
                 </a>
                 <button onclick="window.print()" class="btn btn-outline-secondary btn-sm">
-                    <i class="bi bi-printer me-1"></i> Print
+                    <i class="bi bi-printer me-1"></i> <span class="d-none d-sm-inline">Print</span>
                 </button>
             </div>
         </header>

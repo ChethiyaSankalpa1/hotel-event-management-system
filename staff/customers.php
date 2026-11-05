@@ -46,13 +46,18 @@ require_once __DIR__ . '/../includes/header.php';
 
     <div class="main-content">
         <header class="topbar">
-            <div>
-                <h4 class="mb-0 fw-bold text-dark">Customer Directory</h4>
-                <small class="text-muted">Client contacts, registered accounts, and reservation history</small>
+            <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sidebar-toggle d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div>
+                    <h4 class="mb-0 fw-bold text-dark">Customer Directory</h4>
+                    <small class="text-muted d-none d-sm-inline">Client contacts, registered accounts, and reservation history</small>
+                </div>
             </div>
             <div>
                 <span class="badge bg-light text-dark border p-2">
-                    Total Clients: <?= count($customers) ?>
+                    <span class="d-none d-sm-inline">Total Clients: </span><?= count($customers) ?>
                 </span>
             </div>
         </header>

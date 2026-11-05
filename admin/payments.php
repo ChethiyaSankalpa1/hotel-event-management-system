@@ -57,13 +57,18 @@ require_once __DIR__ . '/../includes/header.php';
 
     <div class="main-content">
         <header class="topbar">
-            <div>
-                <h4 class="mb-0 fw-bold text-dark">Master Payment Ledger</h4>
-                <small class="text-muted">Financial audit receipts, transaction identifiers, and deposit ledger</small>
+            <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sidebar-toggle d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div>
+                    <h4 class="mb-0 fw-bold text-dark">Master Payment Ledger</h4>
+                    <small class="text-muted d-none d-sm-inline">Financial audit receipts, transaction identifiers, and deposit ledger</small>
+                </div>
             </div>
             <div>
-                <span class="badge bg-success fs-6 px-3 py-2">
-                    Filtered Total: <?= format_currency($totalCollected) ?>
+                <span class="badge bg-success-subtle text-success border border-success-subtle fs-6 px-3 py-2">
+                    <span class="d-none d-sm-inline">Filtered Total: </span><?= format_currency($totalCollected) ?>
                 </span>
             </div>
         </header>

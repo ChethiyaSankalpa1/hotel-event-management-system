@@ -102,4 +102,41 @@ document.addEventListener('DOMContentLoaded', function () {
         // Trigger on initial page load if values are prefilled
         triggerCalculationAndAvailability();
     }
+
+    // -------------------------------------------------------------
+    // MOBILE SIDEBAR DRAWER TOGGLE
+    // -------------------------------------------------------------
+    const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+    const sidebarCloseBtn  = document.getElementById('sidebarCloseBtn');
+    const sidebarBackdrop  = document.getElementById('sidebarBackdrop');
+
+    function openSidebar() {
+        document.body.classList.add('sidebar-open');
+    }
+
+    function closeSidebar() {
+        document.body.classList.remove('sidebar-open');
+    }
+
+    if (sidebarToggleBtn) {
+        sidebarToggleBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.body.classList.toggle('sidebar-open');
+        });
+    }
+
+    if (sidebarCloseBtn) {
+        sidebarCloseBtn.addEventListener('click', closeSidebar);
+    }
+
+    if (sidebarBackdrop) {
+        sidebarBackdrop.addEventListener('click', closeSidebar);
+    }
+
+    // Close on ESC key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && document.body.classList.contains('sidebar-open')) {
+            closeSidebar();
+        }
+    });
 });

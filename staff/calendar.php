@@ -24,11 +24,16 @@ require_once __DIR__ . '/../includes/header.php';
 
     <div class="main-content">
         <header class="topbar">
-            <div>
-                <h4 class="mb-0 fw-bold text-dark">Master Banquet Schedule</h4>
-                <small class="text-muted">Real-time calendar view of reserved and pending function spaces</small>
+            <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sidebar-toggle d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div>
+                    <h4 class="mb-0 fw-bold text-dark">Master Banquet Schedule</h4>
+                    <small class="text-muted d-none d-sm-inline">Real-time calendar view of reserved and pending function spaces</small>
+                </div>
             </div>
-            <div style="min-width: 250px;">
+            <div style="min-width: 200px;" class="w-auto">
                 <select id="calendarHallFilter" class="form-select form-select-sm">
                     <option value="">All Function Halls (Unified)</option>
                     <?php foreach ($halls as $h): ?>

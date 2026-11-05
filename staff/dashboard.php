@@ -57,16 +57,21 @@ require_once __DIR__ . '/../includes/header.php';
     <div class="main-content">
         <!-- Topbar -->
         <header class="topbar">
-            <div>
-                <h4 class="mb-0 fw-bold text-dark">Banquet Operations Desk</h4>
-                <small class="text-muted">Daily Event Coordination & Reservations Queue</small>
-            </div>
             <div class="d-flex align-items-center gap-3">
-                <span class="badge bg-light text-dark border p-2">
-                    <i class="bi bi-clock me-1 text-primary"></i> <?= date('l, F j, Y') ?>
+                <button type="button" class="btn btn-sidebar-toggle d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div>
+                    <h4 class="mb-0 fw-bold text-dark">Banquet Operations Desk</h4>
+                    <small class="text-muted d-none d-sm-inline">Daily Event Coordination & Reservations Queue</small>
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-light text-dark border p-2 d-none d-md-inline-flex">
+                    <i class="bi bi-clock me-1 text-primary"></i> <?= date('l, M j, Y') ?>
                 </span>
                 <a href="<?= BASE_URL ?>staff/record_payment.php" class="btn btn-navy btn-sm">
-                    <i class="bi bi-credit-card-2-front me-1"></i> Record Payment
+                    <i class="bi bi-credit-card-2-front me-1"></i> <span class="d-none d-sm-inline">Record</span> Payment
                 </a>
             </div>
         </header>
@@ -77,7 +82,7 @@ require_once __DIR__ . '/../includes/header.php';
 
             <!-- Metric Cards -->
             <div class="row g-3 mb-4">
-                <div class="col-md-3 col-6">
+                <div class="col-xl-3 col-sm-6 col-12">
                     <div class="stat-card">
                         <div>
                             <div class="stat-title">Pending Requests</div>
@@ -89,7 +94,7 @@ require_once __DIR__ . '/../includes/header.php';
                     </div>
                 </div>
 
-                <div class="col-md-3 col-6">
+                <div class="col-xl-3 col-sm-6 col-12">
                     <div class="stat-card">
                         <div>
                             <div class="stat-title">Today's Banquets</div>
@@ -101,7 +106,7 @@ require_once __DIR__ . '/../includes/header.php';
                     </div>
                 </div>
 
-                <div class="col-md-3 col-6">
+                <div class="col-xl-3 col-sm-6 col-12">
                     <div class="stat-card">
                         <div>
                             <div class="stat-title">Confirmed Upcoming</div>
@@ -113,7 +118,7 @@ require_once __DIR__ . '/../includes/header.php';
                     </div>
                 </div>
 
-                <div class="col-md-3 col-6">
+                <div class="col-xl-3 col-sm-6 col-12">
                     <div class="stat-card">
                         <div>
                             <div class="stat-title">Confirmed Balances</div>

@@ -50,13 +50,18 @@ require_once __DIR__ . '/../includes/header.php';
 
     <div class="main-content">
         <header class="topbar">
-            <div>
-                <h4 class="mb-0 fw-bold text-dark">Bookings & Reservation Queue</h4>
-                <small class="text-muted">Review, approve, reject, and update banquet reservations</small>
+            <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sidebar-toggle d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div>
+                    <h4 class="mb-0 fw-bold text-dark">Bookings & Reservation Queue</h4>
+                    <small class="text-muted d-none d-sm-inline">Review, approve, reject, and update banquet reservations</small>
+                </div>
             </div>
             <div>
                 <a href="<?= BASE_URL ?>staff/record_payment.php" class="btn btn-navy btn-sm">
-                    <i class="bi bi-credit-card-2-front me-1"></i> Record Payment
+                    <i class="bi bi-credit-card-2-front me-1"></i> <span class="d-none d-sm-inline">Record</span> Payment
                 </a>
             </div>
         </header>

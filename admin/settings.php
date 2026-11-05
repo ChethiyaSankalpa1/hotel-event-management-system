@@ -85,9 +85,19 @@ require_once __DIR__ . '/../includes/header.php';
 
     <div class="main-content">
         <header class="topbar">
+            <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sidebar-toggle d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div>
+                    <h4 class="mb-0 fw-bold text-dark">System Configuration & Policies</h4>
+                    <small class="text-muted d-none d-sm-inline">Master hotel credentials, tax percentages, deposit rules, and policies</small>
+                </div>
+            </div>
             <div>
-                <h4 class="mb-0 fw-bold text-dark">System Configuration & Hotel Profile</h4>
-                <small class="text-muted">Master hotel credentials, tax percentages, deposit rules, and policies</small>
+                <span class="badge bg-light text-dark border p-2">
+                    <i class="bi bi-shield-check text-success me-1"></i> Admin Secured
+                </span>
             </div>
         </header>
 

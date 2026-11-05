@@ -159,13 +159,18 @@ require_once __DIR__ . '/../includes/header.php';
 
     <div class="main-content">
         <header class="topbar">
-            <div>
-                <h4 class="mb-0 fw-bold text-dark">Function Halls Directory</h4>
-                <small class="text-muted">Manage banquet spaces, dimensions, guest capacities, and rental rates</small>
+            <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sidebar-toggle d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div>
+                    <h4 class="mb-0 fw-bold text-dark">Function Halls Directory</h4>
+                    <small class="text-muted d-none d-sm-inline">Manage banquet spaces, dimensions, guest capacities, and rental rates</small>
+                </div>
             </div>
             <div>
                 <button type="button" class="btn btn-gold btn-sm" data-bs-toggle="modal" data-bs-target="#addHallModal">
-                    <i class="bi bi-plus-circle me-1"></i> Add New Function Hall
+                    <i class="bi bi-plus-circle me-1"></i> <span class="d-none d-sm-inline">Add New</span> Function Hall
                 </button>
             </div>
         </header>

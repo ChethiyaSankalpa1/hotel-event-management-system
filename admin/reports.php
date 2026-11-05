@@ -72,13 +72,18 @@ require_once __DIR__ . '/../includes/header.php';
 
     <div class="main-content">
         <header class="topbar no-print">
-            <div>
-                <h4 class="mb-0 fw-bold text-dark">Executive Reports & Banquet Audits</h4>
-                <small class="text-muted">Financial revenue statements, hall utilization, and reservation breakdowns</small>
+            <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sidebar-toggle d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div>
+                    <h4 class="mb-0 fw-bold text-dark">Executive Reports & Audits</h4>
+                    <small class="text-muted d-none d-sm-inline">Financial revenue statements, hall utilization, and reservation breakdowns</small>
+                </div>
             </div>
             <div>
                 <button onclick="window.print()" class="btn btn-navy btn-sm">
-                    <i class="bi bi-printer me-1"></i> Print Formal Report
+                    <i class="bi bi-printer me-1"></i> <span class="d-none d-sm-inline">Print</span> Report
                 </button>
             </div>
         </header>

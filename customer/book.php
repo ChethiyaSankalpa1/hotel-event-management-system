@@ -93,10 +93,10 @@ require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../includes/navbar.php';
 ?>
 
-<div class="py-4 bg-navy text-white" style="background:#0b1a30; border-bottom: 3px solid #c5a880;">
+<div class="customer-hero">
     <div class="container">
-        <span class="text-warning text-uppercase fw-bold small" style="letter-spacing: 1.5px;">Reservation System</span>
-        <h2 class="luxury-heading text-white mb-0 mt-1">Book an Event Hall</h2>
+        <span class="badge-portal">Reservation System</span>
+        <h2 class="luxury-heading mb-0 mt-1">Book an Event Hall</h2>
         <p class="text-white-50 small mb-0">Select your venue, catering package, schedule, and guest count</p>
     </div>
 </div>

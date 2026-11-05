@@ -58,13 +58,18 @@ require_once __DIR__ . '/../includes/header.php';
 
     <div class="main-content">
         <header class="topbar">
-            <div>
-                <h4 class="mb-0 fw-bold text-dark">Master Bookings Ledger</h4>
-                <small class="text-muted">Consolidated reservation records across all hotel function halls</small>
+            <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sidebar-toggle d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div>
+                    <h4 class="mb-0 fw-bold text-dark">Master Bookings Ledger</h4>
+                    <small class="text-muted d-none d-sm-inline">Consolidated reservation records across all hotel function halls</small>
+                </div>
             </div>
             <div>
                 <button onclick="window.print()" class="btn btn-outline-secondary btn-sm">
-                    <i class="bi bi-printer me-1"></i> Print Roster
+                    <i class="bi bi-printer me-1"></i> <span class="d-none d-sm-inline">Print</span> Roster
                 </button>
             </div>
         </header>

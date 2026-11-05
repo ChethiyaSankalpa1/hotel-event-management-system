@@ -51,13 +51,18 @@ require_once __DIR__ . '/../includes/header.php';
 
     <div class="main-content">
         <header class="topbar">
-            <div>
-                <h4 class="mb-0 fw-bold text-dark">Executive Administration Dashboard</h4>
-                <small class="text-muted">Business intelligence, financial analytics, and venue capacity metrics</small>
+            <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sidebar-toggle d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div>
+                    <h4 class="mb-0 fw-bold text-dark">Executive Administration Dashboard</h4>
+                    <small class="text-muted d-none d-sm-inline">Business intelligence, financial analytics, and venue capacity metrics</small>
+                </div>
             </div>
             <div class="d-flex align-items-center gap-2">
                 <a href="<?= BASE_URL ?>admin/reports.php" class="btn btn-navy btn-sm">
-                    <i class="bi bi-file-earmark-bar-graph me-1"></i> Generate Reports
+                    <i class="bi bi-file-earmark-bar-graph me-1"></i> <span class="d-none d-sm-inline">Financial</span> Reports
                 </a>
             </div>
         </header>
@@ -67,11 +72,11 @@ require_once __DIR__ . '/../includes/header.php';
 
             <!-- Executive KPI Cards -->
             <div class="row g-3 mb-4">
-                <div class="col-xl-3 col-md-6 col-6">
+                <div class="col-xl-3 col-sm-6 col-12">
                     <div class="stat-card">
                         <div>
-                            <div class="stat-title">Gross Revenue Collected</div>
-                            <div class="stat-value text-success" style="font-size:1.5rem;"><?= format_currency($totalRevenue) ?></div>
+                            <div class="stat-title">Gross Revenue</div>
+                            <div class="stat-value text-success"><?= format_currency($totalRevenue) ?></div>
                         </div>
                         <div class="stat-icon green">
                             <i class="bi bi-currency-dollar"></i>
@@ -79,7 +84,7 @@ require_once __DIR__ . '/../includes/header.php';
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-md-6 col-6">
+                <div class="col-xl-3 col-sm-6 col-12">
                     <div class="stat-card">
                         <div>
                             <div class="stat-title">Active Reservations</div>
@@ -91,11 +96,11 @@ require_once __DIR__ . '/../includes/header.php';
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-md-6 col-6">
+                <div class="col-xl-3 col-sm-6 col-12">
                     <div class="stat-card">
                         <div>
-                            <div class="stat-title">Outstanding Receivables</div>
-                            <div class="stat-value text-danger" style="font-size:1.5rem;"><?= format_currency($outstandingDue) ?></div>
+                            <div class="stat-title">Receivables Due</div>
+                            <div class="stat-value text-danger"><?= format_currency($outstandingDue) ?></div>
                         </div>
                         <div class="stat-icon red">
                             <i class="bi bi-wallet2"></i>
@@ -103,7 +108,7 @@ require_once __DIR__ . '/../includes/header.php';
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-md-6 col-6">
+                <div class="col-xl-3 col-sm-6 col-12">
                     <div class="stat-card">
                         <div>
                             <div class="stat-title">Pending Submissions</div>

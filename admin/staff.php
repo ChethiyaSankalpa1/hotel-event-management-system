@@ -103,13 +103,18 @@ require_once __DIR__ . '/../includes/header.php';
 
     <div class="main-content">
         <header class="topbar">
-            <div>
-                <h4 class="mb-0 fw-bold text-dark">Staff & Coordinator Accounts</h4>
-                <small class="text-muted">Manage banquet managers, coordinators, and desk staff login privileges</small>
+            <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn btn-sidebar-toggle d-lg-none" id="sidebarToggleBtn" aria-label="Toggle navigation">
+                    <i class="bi bi-list fs-4"></i>
+                </button>
+                <div>
+                    <h4 class="mb-0 fw-bold text-dark">Staff & Coordinator Accounts</h4>
+                    <small class="text-muted d-none d-sm-inline">Manage banquet managers, coordinators, and desk staff login privileges</small>
+                </div>
             </div>
             <div>
                 <button type="button" class="btn btn-gold btn-sm" data-bs-toggle="modal" data-bs-target="#addStaffModal">
-                    <i class="bi bi-person-plus me-1"></i> Add Staff Account
+                    <i class="bi bi-person-plus me-1"></i> <span class="d-none d-sm-inline">Add Staff</span> Account
                 </button>
             </div>
         </header>

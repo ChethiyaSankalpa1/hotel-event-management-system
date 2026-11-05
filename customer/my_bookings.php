@@ -41,12 +41,12 @@ require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../includes/navbar.php';
 ?>
 
-<div class="py-4 bg-navy text-white" style="background:#0b1a30; border-bottom: 3px solid #c5a880;">
+<div class="customer-hero">
     <div class="container">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
             <div>
-                <span class="text-warning text-uppercase fw-bold small" style="letter-spacing: 1.5px;">Customer Portal</span>
-                <h2 class="luxury-heading text-white mb-0 mt-1">My Booking History</h2>
+                <span class="badge-portal">Customer Portal</span>
+                <h2 class="luxury-heading mb-0 mt-1">My Booking History</h2>
             </div>
             <div>
                 <a href="<?= BASE_URL ?>customer/book.php" class="btn btn-gold shadow-sm">

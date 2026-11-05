@@ -47,12 +47,12 @@ require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../includes/navbar.php';
 ?>
 
-<div class="py-4 bg-navy text-white" style="background:#0b1a30; border-bottom: 3px solid #c5a880;">
+<div class="customer-hero">
     <div class="container">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
             <div>
-                <span class="text-warning text-uppercase fw-bold small" style="letter-spacing: 1.5px;">Customer Portal</span>
-                <h2 class="luxury-heading text-white mb-0 mt-1">Welcome, <?= e($user['name']) ?></h2>
+                <span class="badge-portal">Customer Portal</span>
+                <h2 class="luxury-heading mb-0 mt-1">Welcome, <?= e($user['name']) ?></h2>
             </div>
             <div>
                 <a href="<?= BASE_URL ?>customer/book.php" class="btn btn-gold shadow-sm">
@@ -68,7 +68,7 @@ require_once __DIR__ . '/../includes/navbar.php';
 
     <!-- KPI Metric Cards -->
     <div class="row g-3 mb-4">
-        <div class="col-md-3 col-6">
+        <div class="col-xl-3 col-sm-6 col-12">
             <div class="stat-card">
                 <div>
                     <div class="stat-title">Active Bookings</div>
@@ -79,33 +79,33 @@ require_once __DIR__ . '/../includes/navbar.php';
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-xl-3 col-sm-6 col-12">
             <div class="stat-card">
                 <div>
                     <div class="stat-title">Total Invoiced</div>
-                    <div class="stat-value" style="font-size:1.4rem;"><?= format_currency($stats['total_spent']) ?></div>
+                    <div class="stat-value text-navy"><?= format_currency($stats['total_spent']) ?></div>
                 </div>
                 <div class="stat-icon gold">
                     <i class="bi bi-receipt"></i>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-xl-3 col-sm-6 col-12">
             <div class="stat-card">
                 <div>
                     <div class="stat-title">Total Paid</div>
-                    <div class="stat-value text-success" style="font-size:1.4rem;"><?= format_currency($stats['total_paid']) ?></div>
+                    <div class="stat-value text-success"><?= format_currency($stats['total_paid']) ?></div>
                 </div>
                 <div class="stat-icon green">
                     <i class="bi bi-check-circle"></i>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-xl-3 col-sm-6 col-12">
             <div class="stat-card">
                 <div>
                     <div class="stat-title">Outstanding Balance</div>
-                    <div class="stat-value text-danger" style="font-size:1.4rem;"><?= format_currency($stats['total_balance']) ?></div>
+                    <div class="stat-value text-danger"><?= format_currency($stats['total_balance']) ?></div>
                 </div>
                 <div class="stat-icon red">
                     <i class="bi bi-wallet2"></i>
