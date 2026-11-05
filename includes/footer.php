@@ -6,25 +6,28 @@
 
 $settings = get_system_settings();
 ?>
-<footer class="bg-navy text-white pt-5 pb-4 mt-auto" style="background-color: #081426; border-top: 3px solid #c5a880;">
+<footer class="bg-navy text-white pt-5 pb-4 mt-auto" style="background-color: #071224; border-top: 3px solid #c5a880;">
     <div class="container">
         <div class="row g-4">
             <div class="col-lg-4 col-md-6">
-                <h5 class="luxury-heading text-white mb-3" style="font-size: 1.35rem;">
-                    <i class="bi bi-buildings text-warning me-2"></i><?= e($settings['hotel_name']) ?>
-                </h5>
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="hotel-crest" style="width:34px; height:34px; font-size:1.1rem;"><i class="bi bi-gem"></i></span>
+                    <h5 class="luxury-heading text-white mb-0" style="font-size: 1.35rem;">
+                        <?= e($settings['hotel_name']) ?>
+                    </h5>
+                </div>
                 <p class="text-white-50 small mb-3">
                     <?= e($settings['hotel_tagline']) ?>. We specialize in making your wedding receptions, corporate conferences, and private banquets unforgettable.
                 </p>
                 <div class="text-white-50 small">
-                    <p class="mb-1"><i class="bi bi-geo-alt text-warning me-2"></i> <?= e($settings['address']) ?>, <?= e($settings['city_state_zip']) ?></p>
-                    <p class="mb-1"><i class="bi bi-telephone text-warning me-2"></i> <?= e($settings['phone']) ?></p>
-                    <p class="mb-0"><i class="bi bi-envelope text-warning me-2"></i> <?= e($settings['email']) ?></p>
+                    <p class="mb-1"><i class="bi bi-geo-alt text-gold me-2"></i> <?= e($settings['address']) ?>, <?= e($settings['city_state_zip']) ?></p>
+                    <p class="mb-1"><i class="bi bi-telephone text-gold me-2"></i> <?= e($settings['phone']) ?></p>
+                    <p class="mb-0"><i class="bi bi-envelope text-gold me-2"></i> <?= e($settings['email']) ?></p>
                 </div>
             </div>
 
             <div class="col-lg-2 col-md-6">
-                <h6 class="text-uppercase fw-bold text-warning small mb-3" style="letter-spacing: 1.5px;">Navigation</h6>
+                <h6 class="text-uppercase fw-bold text-gold small mb-3" style="letter-spacing: 1.5px;">Navigation</h6>
                 <ul class="list-unstyled text-white-50 small mb-0">
                     <li class="mb-2"><a href="<?= BASE_URL ?>index.php" class="text-white-50 text-decoration-none hover-gold">Home</a></li>
                     <li class="mb-2"><a href="<?= BASE_URL ?>halls.php" class="text-white-50 text-decoration-none hover-gold">Function Halls</a></li>
@@ -35,7 +38,7 @@ $settings = get_system_settings();
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <h6 class="text-uppercase fw-bold text-warning small mb-3" style="letter-spacing: 1.5px;">Portals & Access</h6>
+                <h6 class="text-uppercase fw-bold text-gold small mb-3" style="letter-spacing: 1.5px;">Portals & Access</h6>
                 <ul class="list-unstyled text-white-50 small mb-0">
                     <li class="mb-2"><a href="<?= BASE_URL ?>login.php" class="text-white-50 text-decoration-none hover-gold">Customer Login</a></li>
                     <li class="mb-2"><a href="<?= BASE_URL ?>register.php" class="text-white-50 text-decoration-none hover-gold">Create Account</a></li>
@@ -46,7 +49,7 @@ $settings = get_system_settings();
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <h6 class="text-uppercase fw-bold text-warning small mb-3" style="letter-spacing: 1.5px;">Reservation Hours</h6>
+                <h6 class="text-uppercase fw-bold text-gold small mb-3" style="letter-spacing: 1.5px;">Reservation Hours</h6>
                 <p class="text-white-50 small mb-2">
                     Our event planning and banquet coordination office is open daily:
                 </p>

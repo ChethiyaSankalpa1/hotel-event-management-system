@@ -160,7 +160,7 @@ require_once __DIR__ . '/../includes/header.php';
                         <div class="col-md-4">
                             <label class="form-label small fw-semibold">Currency Symbol</label>
                             <input type="text" name="currency_symbol" class="form-control text-center" value="<?= e($settings['currency_symbol']) ?>" style="max-width:100px;" required>
-                            <small class="text-muted">e.g. $, €, £, Rs</small>
+                            <small class="text-muted">e.g. LKR, Rs, $, &euro;</small>
                         </div>
 
                         <div class="col-md-4">

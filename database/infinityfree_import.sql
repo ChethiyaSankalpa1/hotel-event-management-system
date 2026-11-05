@@ -176,7 +176,7 @@ CREATE TABLE `system_settings` (
     `phone` VARCHAR(30) NOT NULL DEFAULT '+1 (555) 789-2000',
     `email` VARCHAR(100) NOT NULL DEFAULT 'events@grandhorizonhotel.com',
     `website` VARCHAR(100) NOT NULL DEFAULT 'www.grandhorizonhotel.com',
-    `currency_symbol` VARCHAR(10) NOT NULL DEFAULT '$',
+    `currency_symbol` VARCHAR(10) NOT NULL DEFAULT 'LKR',
     `tax_percentage` DECIMAL(5,2) NOT NULL DEFAULT 10.00,
     `advance_percentage` DECIMAL(5,2) NOT NULL DEFAULT 30.00,
     `cancellation_policy` TEXT NULL,
@@ -200,7 +200,7 @@ INSERT INTO `system_settings` (
     '+1 (555) 789-2000',
     'events@grandhorizonhotel.com',
     'www.grandhorizonhotel.com',
-    '$',
+    'LKR',
     10.00,
     30.00,
     'Cancellations made 14 days or more prior to event receive a 75% refund.'

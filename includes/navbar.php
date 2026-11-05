@@ -11,15 +11,17 @@ $currentScript = basename($_SERVER['SCRIPT_NAME'] ?? '');
 ?>
 <nav class="navbar navbar-expand-lg navbar-grand sticky-top">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="<?= BASE_URL ?>index.php">
-            <i class="bi bi-buildings me-2 text-warning fs-3"></i>
+        <a class="navbar-brand d-flex align-items-center gap-2" href="<?= BASE_URL ?>index.php">
+            <span class="hotel-crest">
+                <i class="bi bi-gem"></i>
+            </span>
             <div>
-                <span class="d-block text-white fw-bold lh-1"><?= e($settings['hotel_name']) ?></span>
-                <small class="text-white-50" style="font-size: 0.72rem; letter-spacing: 1px; font-family: sans-serif; text-transform: uppercase;">Banquet & Events</small>
+                <span class="d-block text-white fw-bold lh-1 brand-title"><?= e($settings['hotel_name']) ?></span>
+                <small class="brand-subtitle">Luxury Venues &amp; Banquets &bull; Sri Lanka</small>
             </div>
         </a>
         
-        <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler text-white border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-list fs-2 text-white"></i>
         </button>
 
@@ -32,11 +34,11 @@ $currentScript = basename($_SERVER['SCRIPT_NAME'] ?? '');
                     <a class="nav-link <?= $currentScript === 'halls.php' ? 'active' : '' ?>" href="<?= BASE_URL ?>halls.php">Function Halls</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= $currentScript === 'packages.php' ? 'active' : '' ?>" href="<?= BASE_URL ?>packages.php">Packages & Menus</a>
+                    <a class="nav-link <?= $currentScript === 'packages.php' ? 'active' : '' ?>" href="<?= BASE_URL ?>packages.php">Event Packages</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= $currentScript === 'availability.php' ? 'active' : '' ?>" href="<?= BASE_URL ?>availability.php">
-                        <i class="bi bi-calendar3 me-1 text-warning"></i> Hall Availability
+                        <i class="bi bi-calendar3 me-1 text-gold"></i> Live Availability
                     </a>
                 </li>
             </ul>
@@ -46,7 +48,7 @@ $currentScript = basename($_SERVER['SCRIPT_NAME'] ?? '');
                     <?php if ($currentRole === ROLE_CUSTOMER): ?>
                         <div class="dropdown">
                             <button class="btn btn-outline-light dropdown-toggle btn-sm d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-person-circle text-warning fs-5"></i>
+                                <i class="bi bi-person-circle text-gold fs-5"></i>
                                 <span><?= e($currentUser['name']) ?></span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end shadow">

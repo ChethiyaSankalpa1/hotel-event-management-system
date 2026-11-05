@@ -26,16 +26,20 @@ function get_system_settings(): array {
             $data = $stmt->fetch();
             if ($data) {
                 $settings = $data;
+                // Normalize currency symbol to LKR
+                if (empty($settings['currency_symbol']) || $settings['currency_symbol'] === '$' || $settings['currency_symbol'] === 'Rs.') {
+                    $settings['currency_symbol'] = 'LKR';
+                }
             } else {
                 $settings = [
                     'hotel_name'         => 'The Grand Horizon Hotel & Banquet',
                     'hotel_tagline'      => 'Exquisite Venues & Unforgettable Celebrations',
                     'address'            => '742 Oceanfront Promenade',
-                    'city_state_zip'     => 'Metropolis, NY 10012',
-                    'phone'              => '+1 (555) 789-2000',
+                    'city_state_zip'     => 'Colombo 03, Sri Lanka',
+                    'phone'              => '+94 11 234 5678',
                     'email'              => 'events@grandhorizonhotel.com',
                     'website'            => 'www.grandhorizonhotel.com',
-                    'currency_symbol'    => '$',
+                    'currency_symbol'    => 'LKR',
                     'tax_percentage'     => 10.00,
                     'advance_percentage' => 30.00,
                     'cancellation_policy'=> 'Standard 14-day cancellation policy applies.'
@@ -44,7 +48,7 @@ function get_system_settings(): array {
         } catch (Exception $e) {
             $settings = [
                 'hotel_name'         => 'The Grand Horizon Hotel & Banquet',
-                'currency_symbol'    => '$',
+                'currency_symbol'    => 'LKR',
                 'tax_percentage'     => 10.00,
                 'advance_percentage' => 30.00,
             ];
@@ -54,12 +58,71 @@ function get_system_settings(): array {
 }
 
 /**
- * Format monetary amount with currency symbol
+ * Format monetary amount with currency symbol (LKR)
  */
 function format_currency($amount): string {
     $settings = get_system_settings();
-    $sym = $settings['currency_symbol'] ?? '$';
-    return $sym . number_format((float)$amount, 2);
+    $sym = trim($settings['currency_symbol'] ?? 'LKR');
+    if ($sym === '$' || $sym === 'Rs.') {
+        $sym = 'LKR';
+    }
+    return $sym . ' ' . number_format((float)$amount, 2);
+}
+
+/**
+ * Retrieve curated real luxury photography for a function hall
+ */
+function get_hall_image_url(array $hall): string {
+    $code = strtoupper($hall['hall_code'] ?? '');
+    $name = strtolower($hall['hall_name'] ?? '');
+
+    // Curated high-resolution 5-star hotel banquet hall photography
+    $unsplashPhotos = [
+        'HALL-BLRM-01' => 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=85', // Imperial Ballroom with chandeliers
+        'HALL-CONF-02' => 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=85', // Sapphire Conference & Banquet Hall
+        'HALL-PAV-03'  => 'https://images.unsplash.com/photo-1544077960-604201fe74bc?auto=format&fit=crop&w=1200&q=85', // Royal Orchid Pavilion
+        'HALL-TRC-04'  => 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=85', // Palm Garden Terrace & Lawn
+    ];
+
+    if (!empty($code) && isset($unsplashPhotos[$code])) {
+        return $unsplashPhotos[$code];
+    }
+
+    if (str_contains($name, 'ballroom') || str_contains($name, 'imperial')) {
+        return 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=85';
+    }
+    if (str_contains($name, 'conference') || str_contains($name, 'sapphire')) {
+        return 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=85';
+    }
+    if (str_contains($name, 'pavilion') || str_contains($name, 'orchid') || str_contains($name, 'glass')) {
+        return 'https://images.unsplash.com/photo-1544077960-604201fe74bc?auto=format&fit=crop&w=1200&q=85';
+    }
+    if (str_contains($name, 'terrace') || str_contains($name, 'garden') || str_contains($name, 'lawn')) {
+        return 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=85';
+    }
+
+    return 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=85';
+}
+
+/**
+ * Retrieve curated photography for event packages
+ */
+function get_package_image_url(array $pkg): string {
+    $cat = strtolower($pkg['category'] ?? '');
+    switch ($cat) {
+        case 'wedding':
+            return 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=85';
+        case 'corporate':
+            return 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=85';
+        case 'birthday':
+            return 'https://images.unsplash.com/photo-1464349153735-7db50ed83c84?auto=format&fit=crop&w=800&q=85';
+        case 'anniversary':
+            return 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=85';
+        case 'special':
+            return 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=85';
+        default:
+            return 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=85';
+    }
 }
 
 /**

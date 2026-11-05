@@ -104,15 +104,17 @@ require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/navbar.php';
 ?>
 
-<div class="py-5" style="background: linear-gradient(135deg, #0b1a30 0%, #162a4d 100%); min-height: 85vh;">
+<div class="py-5" style="background: linear-gradient(135deg, #071224 0%, #0b1a30 50%, #162a4d 100%); min-height: 85vh;">
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-lg-7 col-md-9">
-                <div class="card shadow-lg border-0 rounded-3 overflow-hidden">
-                    <div class="card-header bg-navy text-white text-center py-4 border-bottom border-warning border-3" style="background:#0b1a30;">
-                        <i class="bi bi-person-plus fs-1 text-warning d-inline-block mb-2"></i>
+                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                    <div class="card-header bg-navy text-white text-center py-4 border-bottom border-2" style="background:#0b1a30; border-color: var(--hotel-gold) !important;">
+                        <span class="hotel-crest mx-auto mb-2" style="width:46px; height:46px; font-size:1.3rem;">
+                            <i class="bi bi-person-check"></i>
+                        </span>
                         <h4 class="luxury-heading text-white mb-1">Create Customer Account</h4>
-                        <p class="text-white-50 small mb-0">Join The Grand Horizon to reserve banquet halls and manage events</p>
+                        <p class="text-white-50 small mb-0">Join <?= e($settings['hotel_name']) ?> to reserve banquet halls and manage events</p>
                     </div>
 
                     <div class="card-body p-4 p-md-5 bg-white">

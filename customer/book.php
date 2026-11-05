@@ -119,7 +119,7 @@ require_once __DIR__ . '/../includes/navbar.php';
             <div class="col-lg-8">
                 <div class="card shadow-sm border-0 rounded-3 mb-4 p-4 bg-white">
                     <h5 class="fw-bold text-navy mb-3 border-bottom pb-2" style="color:#0b1a30;">
-                        <i class="bi bi-geo-alt-fill text-warning me-2"></i> 1. Select Venue & Event Type
+                        <i class="bi bi-geo-alt-fill text-gold me-2"></i> 1. Select Venue &amp; Event Type
                     </h5>
 
                     <div class="row g-3 mb-4">
@@ -149,7 +149,7 @@ require_once __DIR__ . '/../includes/navbar.php';
                     </div>
 
                     <h5 class="fw-bold text-navy mb-3 border-bottom pb-2" style="color:#0b1a30;">
-                        <i class="bi bi-clock-history text-warning me-2"></i> 2. Date & Time Scheduling
+                        <i class="bi bi-clock-history text-gold me-2"></i> 2. Date &amp; Time Scheduling
                     </h5>
 
                     <div class="row g-3 mb-4">
@@ -176,7 +176,7 @@ require_once __DIR__ . '/../includes/navbar.php';
                     </div>
 
                     <h5 class="fw-bold text-navy mb-3 border-bottom pb-2" style="color:#0b1a30;">
-                        <i class="bi bi-cup-straw text-warning me-2"></i> 3. Package & Guest Capacity
+                        <i class="bi bi-cup-straw text-gold me-2"></i> 3. Package &amp; Guest Capacity
                     </h5>
 
                     <div class="row g-3 mb-4">
@@ -215,23 +215,23 @@ require_once __DIR__ . '/../includes/navbar.php';
                     <ul class="list-group list-group-flush small mb-3">
                         <li class="list-group-item d-flex justify-content-between px-0">
                             <span class="text-muted">Function Hall Rental:</span>
-                            <strong id="calcHallCharge">$0.00</strong>
+                            <strong id="calcHallCharge">LKR 0.00</strong>
                         </li>
                         <li class="list-group-item d-flex justify-content-between px-0">
-                            <span class="text-muted">Catering & Package:</span>
-                            <strong id="calcPackageCharge">$0.00</strong>
+                            <span class="text-muted">Catering &amp; Package:</span>
+                            <strong id="calcPackageCharge">LKR 0.00</strong>
                         </li>
                         <li class="list-group-item d-flex justify-content-between px-0">
-                            <span class="text-muted">Taxes & Service (<?= $settings['tax_percentage'] ?>%):</span>
-                            <strong id="calcTaxCharge">$0.00</strong>
+                            <span class="text-muted">Taxes &amp; Service (<?= $settings['tax_percentage'] ?>%):</span>
+                            <strong id="calcTaxCharge">LKR 0.00</strong>
                         </li>
                         <li class="list-group-item d-flex justify-content-between px-0 py-3 border-top">
                             <span class="fs-6 fw-bold text-dark">Estimated Total:</span>
-                            <span class="fs-5 fw-bold text-navy" id="calcTotalCharge" style="color:#0b1a30;">$0.00</span>
+                            <span class="fs-5 fw-bold text-navy" id="calcTotalCharge" style="color:#0b1a30;">LKR 0.00</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between px-0 bg-light p-2 rounded">
                             <span class="fw-semibold text-warning-emphasis">Advance Due (<?= $settings['advance_percentage'] ?>%):</span>
-                            <strong class="text-warning-emphasis" id="calcAdvanceCharge">$0.00</strong>
+                            <strong class="text-warning-emphasis" id="calcAdvanceCharge">LKR 0.00</strong>
                         </li>
                     </ul>
 

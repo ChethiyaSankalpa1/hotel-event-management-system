@@ -79,7 +79,7 @@ require_once __DIR__ . '/../includes/header.php';
                             <div class="stat-value text-success"><?= format_currency($totalRevenue) ?></div>
                         </div>
                         <div class="stat-icon green">
-                            <i class="bi bi-currency-dollar"></i>
+                            <i class="bi bi-cash-stack"></i>
                         </div>
                     </div>
                 </div>

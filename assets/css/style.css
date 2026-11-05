@@ -717,3 +717,629 @@ a:hover {
         width: 100% !important;
     }
 }
+
+/* =============================================================
+   PUBLIC PAGES — HERO SECTION
+   ============================================================= */
+.hero-section {
+    background: linear-gradient(180deg, rgba(7, 18, 36, 0.82) 0%, rgba(11, 26, 48, 0.94) 100%),
+                url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    padding: 6rem 0 5.5rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid var(--hotel-gold);
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 40%, rgba(197, 168, 128, 0.12) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.hero-subtitle {
+    color: var(--hotel-gold);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin-bottom: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hero-subtitle::before,
+.hero-subtitle::after {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--hotel-gold);
+}
+
+.hero-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.18;
+    margin-bottom: 1.35rem;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.4);
+}
+
+.hero-text {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.08rem;
+    line-height: 1.8;
+    max-width: 580px;
+    margin-bottom: 2.2rem;
+    font-weight: 400;
+}
+
+/* Hotel Crest Brand Logo */
+.hotel-crest {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(212,175,55,0.25) 0%, rgba(197,168,128,0.12) 100%);
+    border: 1.5px solid var(--hotel-gold);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--hotel-gold);
+    font-size: 1.15rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(197,168,128,0.25);
+}
+
+.brand-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.18rem;
+    letter-spacing: 0.5px;
+}
+
+.brand-subtitle {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 1.2px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-transform: uppercase;
+    color: var(--hotel-gold);
+    font-weight: 600;
+}
+
+/* =============================================================
+   PUBLIC PAGES — SECTION LAYOUT & FEATURES
+   ============================================================= */
+.section-padding {
+    padding: 5.5rem 0;
+}
+
+.section-title-wrap {
+    text-align: center;
+    margin-bottom: 3.2rem;
+}
+
+.section-badge {
+    display: inline-block;
+    background: var(--hotel-gold-subtle);
+    color: #997843;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 700;
+    padding: 0.4rem 1.15rem;
+    border-radius: var(--hotel-radius-pill);
+    border: 1px solid rgba(197,168,128,0.45);
+    margin-bottom: 0.85rem;
+}
+
+.section-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    font-weight: 700;
+    color: var(--hotel-navy);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+}
+
+.section-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--hotel-gold), var(--hotel-gold-accent));
+    border-radius: 2px;
+    margin: 0 auto;
+}
+
+/* Feature Boxes */
+.feature-box {
+    background: #ffffff;
+    border: 1px solid #e9edf3;
+    border-radius: 12px;
+    padding: 1.85rem 1.4rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(11,26,48,0.08);
+    border-color: rgba(197,168,128,0.45);
+}
+
+.feature-icon-wrapper {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 1.1rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(197,168,128,0.18) 0%, rgba(212,175,55,0.08) 100%);
+    border: 1px solid rgba(197,168,128,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b39366;
+    font-size: 1.6rem;
+    transition: all 0.3s ease;
+}
+
+.feature-box:hover .feature-icon-wrapper {
+    background: var(--hotel-navy);
+    color: var(--hotel-gold);
+    border-color: var(--hotel-gold);
+    transform: scale(1.05);
+}
+
+/* =============================================================
+   PUBLIC PAGES — VENUE / HALL CARDS WITH REAL IMAGES
+   ============================================================= */
+.venue-card {
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #e5e9f0;
+    box-shadow: 0 4px 16px rgba(11,26,48,0.05);
+    transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.venue-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 36px rgba(11,26,48,0.13);
+    border-color: rgba(197,168,128,0.5);
+}
+
+.venue-card-img-wrap {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+    background-color: #0b1a30;
+}
+
+.venue-card-img-wrap img,
+.venue-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.55s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.venue-card:hover .venue-card-img-wrap img,
+.venue-card:hover .venue-img {
+    transform: scale(1.07);
+}
+
+.venue-card-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(7,18,36,0.15) 30%, rgba(7,18,36,0.75) 100%);
+    pointer-events: none;
+}
+
+.venue-card-code-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(7, 18, 36, 0.88);
+    color: var(--hotel-gold);
+    border: 1px solid rgba(197,168,128,0.5);
+    backdrop-filter: blur(8px);
+    padding: 4px 12px;
+    border-radius: 50rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    z-index: 2;
+}
+
+.venue-card-badge {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    background: rgba(255, 255, 255, 0.96);
+    color: #0b1a30;
+    padding: 5px 13px;
+    border-radius: 50rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.venue-card-body {
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.venue-card-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--hotel-navy);
+    margin-bottom: 0.55rem;
+    line-height: 1.3;
+}
+
+.venue-specs {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.25rem;
+}
+
+.venue-specs li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    color: #475569;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--hotel-border-subtle);
+}
+
+.venue-specs li:last-child {
+    border-bottom: none;
+}
+
+.venue-specs li i {
+    color: #b39366;
+    font-size: 1rem;
+    width: 20px;
+    flex-shrink: 0;
+}
+
+.venue-price-tag {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--hotel-border);
+    margin-top: auto;
+}
+
+.price-figure {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--hotel-navy);
+    letter-spacing: -0.01em;
+}
+
+/* =============================================================
+   PUBLIC PAGES — EVENT PACKAGE CARDS WITH REAL IMAGES
+   ============================================================= */
+.package-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 1.6rem;
+    border: 1px solid #e5e9f0;
+    box-shadow: 0 4px 16px rgba(11,26,48,0.05);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.package-card-img-wrap {
+    position: relative;
+    height: 170px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    background-color: #0b1a30;
+}
+
+.package-card-img-wrap img,
+.package-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.package-card:hover .package-card-img-wrap img,
+.package-card:hover .package-img {
+    transform: scale(1.06);
+}
+
+.package-category-pill {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(7, 18, 36, 0.88);
+    color: var(--hotel-gold);
+    border: 1px solid rgba(197,168,128,0.45);
+    padding: 3px 10px;
+    border-radius: 50rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    backdrop-filter: blur(4px);
+    z-index: 2;
+}
+
+.package-card.featured {
+    border-color: var(--hotel-gold);
+    box-shadow: 0 0 0 1px var(--hotel-gold), 0 12px 28px rgba(197,168,128,0.18);
+}
+
+.package-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 36px rgba(11,26,48,0.12);
+}
+
+.package-price {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--hotel-navy);
+    line-height: 1.1;
+    margin-bottom: 0.35rem;
+}
+
+.package-inclusions {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+}
+
+.package-inclusions li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    color: #475569;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--hotel-border-subtle);
+}
+
+.package-inclusions li:last-child {
+    border-bottom: none;
+}
+
+.package-inclusions li::before {
+    content: "\F26E";
+    font-family: "bootstrap-icons";
+    color: #16a34a;
+    font-size: 0.88rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* =============================================================
+   LUXURY UTILITIES & COLOR OVERRIDES
+   ============================================================= */
+.text-gold {
+    color: var(--hotel-gold) !important;
+}
+
+.text-gold-dark {
+    color: #997843 !important;
+}
+
+.bg-gold {
+    background-color: var(--hotel-gold) !important;
+}
+
+.border-gold {
+    border-color: var(--hotel-gold) !important;
+}
+
+.btn-outline-navy {
+    background-color: transparent;
+    color: var(--hotel-navy);
+    border: 1px solid var(--hotel-navy);
+    font-weight: 600;
+}
+
+.btn-outline-navy:hover {
+    background-color: var(--hotel-navy);
+    color: #ffffff;
+}
+
+.hover-shadow {
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 10px 24px rgba(11,26,48,0.1) !important;
+    transform: translateY(-3px);
+}
+
+.hover-gold:hover {
+    color: var(--hotel-gold) !important;
+}
+
+.text-navy {
+    color: var(--hotel-navy) !important;
+}
+
+/* =============================================================
+   CUSTOMER PORTAL — BOOKING FORM & DASHBOARD
+   ============================================================= */
+.booking-step-header {
+    background: linear-gradient(135deg, var(--hotel-navy) 0%, var(--hotel-navy-light) 100%);
+    color: #ffffff;
+    padding: 2rem 2rem 1.5rem;
+    border-radius: var(--hotel-radius-lg) var(--hotel-radius-lg) 0 0;
+    border-bottom: 3px solid var(--hotel-gold);
+}
+
+.booking-step-header h3 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-bottom: 0.25rem;
+}
+
+.booking-step-header p {
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.booking-summary-card {
+    background: var(--hotel-gold-subtle);
+    border: 1px solid rgba(197,168,128,0.4);
+    border-radius: var(--hotel-radius-lg);
+    padding: 1.5rem;
+}
+
+.booking-summary-card .summary-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px dashed rgba(197,168,128,0.35);
+}
+
+.booking-summary-card .summary-line:last-child {
+    border-bottom: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding-top: 0.75rem;
+    color: var(--hotel-navy);
+}
+
+/* =============================================================
+   ADMIN/STAFF — ENHANCED TABLE & CARD STYLES
+   ============================================================= */
+.page-title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.page-title-bar h4 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 1.35rem;
+    color: var(--hotel-navy);
+    margin: 0;
+}
+
+.card-panel {
+    background: #ffffff;
+    border: 1px solid var(--hotel-border);
+    border-radius: var(--hotel-radius-lg);
+    box-shadow: var(--hotel-shadow-xs);
+    overflow: hidden;
+}
+
+.card-panel-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--hotel-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    background: #fafbfc;
+}
+
+.card-panel-body {
+    padding: 1.5rem;
+}
+
+/* =============================================================
+   ALERTS & FLASH MESSAGES
+   ============================================================= */
+.alert {
+    border-radius: var(--hotel-radius);
+    border-left: 4px solid;
+    font-size: 0.9rem;
+}
+
+.alert-success { border-left-color: #16a34a; }
+.alert-danger  { border-left-color: #dc2626; }
+.alert-warning { border-left-color: #d97706; }
+.alert-info    { border-left-color: #0284c7; }
+
+/* =============================================================
+   RESPONSIVE — PUBLIC PAGES
+   ============================================================= */
+@media (max-width: 991.98px) {
+    .hero-section {
+        padding: 3.5rem 0 3rem;
+        text-align: center;
+    }
+
+    .hero-text {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .section-padding {
+        padding: 3.5rem 0;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-section {
+        padding: 2.5rem 0 2rem;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .package-price {
+        font-size: 1.5rem;
+    }
+
+    .price-figure {
+        font-size: 1.25rem;
+    }
+
+    .venue-card-body {
+        padding: 1.15rem;
+    }
+
+    .package-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .section-padding {
+        padding: 2.5rem 0;
+    }
+}
+
+/* Print Invoice Styles (duplicate guard) */

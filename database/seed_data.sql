@@ -20,7 +20,7 @@ INSERT INTO `system_settings` (
     '+1 (555) 789-2000',
     'events@grandhorizonhotel.com',
     'www.grandhorizonhotel.com',
-    '$',
+    'LKR',
     10.00,
     30.00,
     'Cancellations made 14 days or more prior to the event date will receive a 75% refund of the advance deposit. Cancellations within 14 days of the event date forfeit the advance deposit.'

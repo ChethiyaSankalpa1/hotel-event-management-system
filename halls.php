@@ -95,14 +95,12 @@ require_once __DIR__ . '/includes/navbar.php';
             <?php foreach ($halls as $hall): ?>
                 <div class="col-lg-6">
                     <div class="venue-card h-100">
-                        <div class="venue-card-img-wrap d-flex align-items-center justify-content-center text-white" 
-                             style="background: linear-gradient(135deg, #0b1a30 0%, #162a4d 100%); min-height: 200px;">
-                            <div class="text-center p-3">
-                                <i class="bi bi-buildings fs-1 text-warning mb-2 d-block"></i>
-                                <span class="badge bg-warning text-dark fw-bold px-3 py-1"><?= e($hall['hall_code']) ?></span>
-                            </div>
+                        <div class="venue-card-img-wrap">
+                            <img src="<?= e(get_hall_image_url($hall)) ?>" alt="<?= e($hall['hall_name']) ?>" class="venue-img" loading="lazy">
+                            <div class="venue-card-img-overlay"></div>
+                            <span class="venue-card-code-badge"><?= e($hall['hall_code']) ?></span>
                             <span class="venue-card-badge">
-                                <i class="bi bi-people-fill me-1"></i> <?= $hall['capacity_min'] ?> - <?= $hall['capacity_max'] ?> Guests
+                                <i class="bi bi-people-fill me-1 text-gold"></i> <?= $hall['capacity_min'] ?> - <?= $hall['capacity_max'] ?> Guests
                             </span>
                         </div>
 
@@ -128,7 +126,7 @@ require_once __DIR__ . '/includes/navbar.php';
                                 </div>
                             </div>
 
-                            <h6 class="fw-bold small text-uppercase text-muted mb-2" style="letter-spacing:0.8px;">Amenities & Features</h6>
+                            <h6 class="fw-bold small text-uppercase text-muted mb-2" style="letter-spacing:0.8px;">Amenities &amp; Features</h6>
                             <div class="d-flex flex-wrap gap-1 mb-4">
                                 <?php 
                                     $amenities = explode(',', $hall['amenities'] ?? '');

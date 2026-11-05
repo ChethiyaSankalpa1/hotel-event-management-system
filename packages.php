@@ -76,18 +76,17 @@ require_once __DIR__ . '/includes/navbar.php';
         <?php else: ?>
             <?php foreach ($packages as $pkg): ?>
                 <div class="col-lg-6">
-                    <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden">
-                        <div class="card-header bg-navy text-white p-4 border-bottom border-warning border-2" style="background:#0b1a30;">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <span class="badge bg-warning text-dark text-uppercase fw-bold" style="font-size:0.75rem;">
-                                    <?= e($pkg['category']) ?>
-                                </span>
-                                <small class="text-white-50"><?= e($pkg['package_code']) ?></small>
-                            </div>
-                            <h3 class="luxury-heading text-white mb-0" style="font-size: 1.45rem;"><?= e($pkg['package_name']) ?></h3>
+                    <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden package-card">
+                        <div class="package-card-img-wrap" style="height: 200px; margin: -1.6rem -1.6rem 1.25rem -1.6rem; border-radius:0;">
+                            <img src="<?= e(get_package_image_url($pkg)) ?>" alt="<?= e($pkg['package_name']) ?>" class="package-img" loading="lazy">
+                            <span class="package-category-pill"><?= e($pkg['category']) ?></span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <h3 class="luxury-heading mb-0 text-navy" style="font-size: 1.45rem;"><?= e($pkg['package_name']) ?></h3>
+                            <small class="text-muted fw-bold"><?= e($pkg['package_code']) ?></small>
                         </div>
 
-                        <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex flex-column flex-grow-1 pt-2">
                             <div class="d-flex align-items-baseline gap-2 mb-3">
                                 <span class="fs-2 fw-bold text-navy" style="color:#0b1a30;"><?= format_currency($pkg['price_per_person']) ?></span>
                                 <span class="text-muted">/ person</span>
@@ -100,30 +99,27 @@ require_once __DIR__ . '/includes/navbar.php';
                             <?php if (!empty($pkg['menu_details'])): ?>
                                 <div class="mb-4 p-3 bg-light rounded-3 border">
                                     <h6 class="fw-bold small text-uppercase text-dark mb-2">
-                                        <i class="bi bi-cup-hot me-1 text-warning"></i> Menu Highlights & Courses
+                                        <i class="bi bi-cup-hot me-1 text-gold"></i> Menu Highlights &amp; Courses
                                     </h6>
                                     <p class="small text-muted mb-0"><?= nl2br(e($pkg['menu_details'])) ?></p>
                                 </div>
                             <?php endif; ?>
 
                             <!-- Inclusions List -->
-                            <h6 class="fw-bold small text-uppercase text-muted mb-2">Package Inclusions & Services</h6>
-                            <ul class="list-unstyled small mb-4 flex-grow-1">
+                            <h6 class="fw-bold small text-uppercase text-muted mb-2">Package Inclusions &amp; Services</h6>
+                            <ul class="package-inclusions mb-4 flex-grow-1">
                                 <?php 
                                     $inclusions = explode(',', $pkg['inclusions'] ?? '');
                                     foreach ($inclusions as $inc):
                                         $inc = trim($inc);
                                         if (empty($inc)) continue;
                                 ?>
-                                    <li class="mb-2 d-flex align-items-start">
-                                        <i class="bi bi-check-circle-fill text-success me-2 mt-1 flex-shrink-0"></i>
-                                        <span><?= e($inc) ?></span>
-                                    </li>
+                                    <li><span><?= e($inc) ?></span></li>
                                 <?php endforeach; ?>
                             </ul>
 
                             <div class="mt-auto pt-3 border-top d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Prices subject to <?= get_system_settings()['tax_percentage'] ?>% tax</small>
+                                <small class="text-muted">Tax &amp; service charges applicable</small>
                                 <a href="<?= BASE_URL ?>customer/book.php?package_id=<?= $pkg['id'] ?>" class="btn btn-gold btn-sm px-4">
                                     <i class="bi bi-calendar-plus me-1"></i> Book With This Package
                                 </a>
