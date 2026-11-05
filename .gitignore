@@ -1,0 +1,24 @@
+# Operating System Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Editor & IDE Directories
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment Variables & Sensitive Credentials
+.env
+.env.local
+.env.*.local
+
+# Logs and databases dumps (except initial schema/seeds)
+*.log
+database/*.bak.sql
