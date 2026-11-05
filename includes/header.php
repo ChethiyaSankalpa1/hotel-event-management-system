@@ -30,8 +30,8 @@ $settings = get_system_settings();
     <!-- FullCalendar CSS (for availability views) -->
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet">
     
-    <!-- Custom Hotel Luxury Theme -->
-    <link href="<?= BASE_URL ?>assets/css/style.css" rel="stylesheet">
+    <!-- Custom Hotel Luxury Theme with Cache-Busting -->
+    <link href="<?= BASE_URL ?>assets/css/style.css?v=2.0.1" rel="stylesheet">
     
     <script>
         window.BASE_URL = <?= json_encode(BASE_URL) ?>;

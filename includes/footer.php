@@ -80,8 +80,8 @@ $settings = get_system_settings();
 <!-- FullCalendar Bundle JS -->
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
 
-<!-- Custom App Scripts -->
-<script src="<?= BASE_URL ?>assets/js/main.js"></script>
+<!-- Custom App Scripts with Cache-Busting -->
+<script src="<?= BASE_URL ?>assets/js/main.js?v=2.0.1"></script>
 
 <?php if (isset($includeCalendarJs) && $includeCalendarJs): ?>
     <script src="<?= BASE_URL ?>assets/js/calendar.js"></script>

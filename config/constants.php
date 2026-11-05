@@ -9,9 +9,15 @@ define('APP_NAME', 'The Grand Horizon');
 define('APP_FULL_NAME', 'The Grand Horizon Hotel & Banquet');
 define('APP_VERSION', '1.0.0');
 
-// Calculate base URL automatically
+// Calculate base URL automatically (with reverse proxy HTTPS detection for Railway, Cloudflare, etc.)
 if (!defined('BASE_URL')) {
-    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || ($_SERVER['SERVER_PORT'] ?? 80) == 443) ? "https://" : "http://";
+    $isHttps = (
+        (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ||
+        (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https') ||
+        (isset($_SERVER['HTTP_X_FORWARDED_SSL']) && strtolower($_SERVER['HTTP_X_FORWARDED_SSL']) === 'on') ||
+        (($_SERVER['SERVER_PORT'] ?? 80) == 443)
+    );
+    $protocol = $isHttps ? "https://" : "http://";
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
     
     // Determine the base folder from current script path
