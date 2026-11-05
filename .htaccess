@@ -1,17 +1,7 @@
-# Apache Configuration for Hotel Event Management System
+# Hosting Compatible Configuration
+DirectoryIndex index.php index.html
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
 </IfModule>
-
-# Protect sensitive directories from directory browsing
-Options -Indexes
-
-# Protect critical folders from direct external execution
-<FilesMatch "\.(sql|log|ini|env)$">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
-
-# Default document
-DirectoryIndex index.php index.html
