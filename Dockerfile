@@ -12,8 +12,8 @@ WORKDIR /var/www/html
 RUN chown -R www-data:www-data /var/www/html && \
     chmod -R 755 /var/www/html
 
-# Expose port 80 for Railway edge proxy
-EXPOSE 80
+# Expose Railway's configured port (8080)
+EXPOSE 8080
 
-# Dynamically bind to Railway's $PORT (default 80)
-CMD ["sh", "-c", "PORT=${PORT:-80}; echo \"Starting PHP server on port $PORT...\"; exec php -S 0.0.0.0:$PORT router.php"]
+# Listen on PORT (default 8080 to match Railway Public Networking)
+CMD ["sh", "-c", "PORT=${PORT:-8080}; echo \"Starting PHP server on 0.0.0.0:$PORT...\"; exec php -S 0.0.0.0:$PORT router.php"]
