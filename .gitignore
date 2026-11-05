@@ -22,3 +22,5 @@ $RECYCLE.BIN/
 # Logs and databases dumps (except initial schema/seeds)
 *.log
 database/*.bak.sql
+
+*.zip

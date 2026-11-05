@@ -1,3 +1,4 @@
+# Cache bust: v3 - nginx+fpm build
 FROM php:8.2-fpm
 
 # Install nginx and clean up apt cache
