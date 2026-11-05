@@ -24,7 +24,7 @@ if ($isLiveHosting) {
     defined('DB_PORT') or define('DB_PORT', '3306');
 } else {
     // -------------------------------------------------------------
-    // LOCAL XAMPP / DOCKER / CLOUD ENVIRONMENT
+    // LOCAL XAMPP / DOCKER / CLOUD ENVIRONMENT (Railway, Render, etc.)
     // -------------------------------------------------------------
     $cloudDbUrl = getenv('DATABASE_URL') ?: getenv('MYSQL_URL');
     if ($cloudDbUrl && ($urlParts = parse_url($cloudDbUrl))) {
@@ -33,6 +33,12 @@ if ($isLiveHosting) {
         defined('DB_USER') or define('DB_USER', $urlParts['user'] ?? 'root');
         defined('DB_PASS') or define('DB_PASS', $urlParts['pass'] ?? '');
         defined('DB_NAME') or define('DB_NAME', ltrim($urlParts['path'] ?? 'hotel_event_db', '/'));
+    } elseif (getenv('MYSQLHOST')) {
+        defined('DB_HOST') or define('DB_HOST', getenv('MYSQLHOST'));
+        defined('DB_PORT') or define('DB_PORT', getenv('MYSQLPORT') ?: '3306');
+        defined('DB_USER') or define('DB_USER', getenv('MYSQLUSER') ?: 'root');
+        defined('DB_PASS') or define('DB_PASS', getenv('MYSQLPASSWORD') ?: '');
+        defined('DB_NAME') or define('DB_NAME', getenv('MYSQLDATABASE') ?: 'railway');
     } else {
         defined('DB_HOST') or define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
         defined('DB_NAME') or define('DB_NAME', getenv('DB_NAME') ?: 'hotel_event_db');
